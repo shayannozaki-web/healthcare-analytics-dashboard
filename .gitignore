@@ -30,13 +30,13 @@ yarn-error.log*
 # databases
 *.db
 *.db-journal
+*.db-shm
+*.db-wal
 *.sqlite
 *.sqlite3
-data/*.db
 
-# synthea raw output
-synthea/
-synthea-output/
+# generated data (Synthea zip, extracted CSVs, sqlite DB)
+/data/
 
 # typescript
 *.tsbuildinfo

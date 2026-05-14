@@ -10,7 +10,9 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "db:load": "tsx scripts/load-data.ts",
+    "db:reset": "tsx scripts/load-data.ts --fresh"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.32.1",
@@ -40,11 +42,13 @@
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
     "autoprefixer": "^10.4.20",
+    "csv-parse": "^6.2.1",
     "drizzle-kit": "^0.30.1",
     "eslint": "^9.18.0",
     "eslint-config-next": "^16.2.6",
     "postcss": "^8.5.1",
     "tailwindcss": "^3.4.17",
+    "tsx": "^4.21.0",
     "typescript": "^5.7.3"
   }
 }
