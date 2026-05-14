@@ -31,9 +31,11 @@ function KpiCard({ label, value, hint, icon: Icon }: KpiCardProps) {
 }
 
 export default async function DashboardPage() {
-  const kpis = getKpis();
-  const encounters = getEncountersByMonth();
-  const conditions = getTopConditions(10);
+  const [kpis, encounters, conditions] = await Promise.all([
+    getKpis(),
+    getEncountersByMonth(),
+    getTopConditions(10),
+  ]);
 
   return (
     <div className="space-y-6 p-8">

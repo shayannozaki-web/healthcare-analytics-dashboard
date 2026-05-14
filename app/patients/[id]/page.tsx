@@ -9,6 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { calcAge, cleanName, formatCurrency, formatDate, titleCase } from "@/lib/format";
 import {
+  type PatientDetail,
   getPatient,
   getPatientConditions,
   getPatientEncounters,
@@ -20,8 +21,7 @@ export const dynamic = "force-dynamic";
 
 type Demographic = { label: string; value: string };
 
-function demographicsFor(p: ReturnType<typeof getPatient>, ref: string): Demographic[] {
-  if (!p) return [];
+function demographicsFor(p: PatientDetail, ref: string): Demographic[] {
   return [
     { label: "Age", value: `${calcAge(p.dob, ref)} (${formatDate(p.dob)})` },
     { label: "Gender", value: p.gender === "F" ? "Female" : p.gender === "M" ? "Male" : p.gender ?? "—" },
@@ -38,13 +38,15 @@ export default async function PatientDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const patient = getPatient(id);
+  const patient = await getPatient(id);
   if (!patient) notFound();
 
-  const ref = getReferenceDate();
-  const conditions = getPatientConditions(id);
-  const medications = getPatientMedications(id);
-  const encounters = getPatientEncounters(id);
+  const [ref, conditions, medications, encounters] = await Promise.all([
+    getReferenceDate(),
+    getPatientConditions(id),
+    getPatientMedications(id),
+    getPatientEncounters(id),
+  ]);
 
   return (
     <div className="space-y-6 p-8">

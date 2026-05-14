@@ -48,16 +48,19 @@ export default async function PatientsPage({
   const page = parseInt(sp.page, 1);
   const pageSize = 50;
 
-  const conditionOptions = getTopConditions(20).map((c) => c.description);
-
-  const { rows, total } = listPatients({
-    minAge: minAge === 0 ? undefined : minAge,
-    maxAge: maxAge === 100 ? undefined : maxAge,
-    gender: gender || undefined,
-    conditions: conditions.length > 0 ? conditions : undefined,
-    page,
-    pageSize,
-  });
+  const [conditionRows, listResult] = await Promise.all([
+    getTopConditions(20),
+    listPatients({
+      minAge: minAge === 0 ? undefined : minAge,
+      maxAge: maxAge === 100 ? undefined : maxAge,
+      gender: gender || undefined,
+      conditions: conditions.length > 0 ? conditions : undefined,
+      page,
+      pageSize,
+    }),
+  ]);
+  const conditionOptions = conditionRows.map((c) => c.description);
+  const { rows, total } = listResult;
 
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
   const buildPageHref = (target: number) => {

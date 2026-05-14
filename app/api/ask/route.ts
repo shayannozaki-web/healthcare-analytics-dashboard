@@ -143,7 +143,7 @@ export async function POST(req: NextRequest) {
 
         let result;
         try {
-          result = runSelect(input.sql);
+          result = await runSelect(input.sql);
         } catch (err) {
           send({
             event: "error",
