@@ -1,8 +1,10 @@
 import { AskForm } from "@/components/ask/ask-form";
+import { requireSeeded } from "@/lib/require-seeded";
 
 export const dynamic = "force-dynamic";
 
-export default function AskPage() {
+export default async function AskPage() {
+  await requireSeeded();
   return (
     <div className="mx-auto max-w-4xl space-y-6 p-8">
       <header>

@@ -5,6 +5,7 @@ import { EncountersChart } from "@/components/charts/encounters-chart";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatDate, formatDays, formatNumber, formatPercent } from "@/lib/format";
 import { getEncountersByMonth, getKpis, getTopConditions } from "@/lib/queries";
+import { requireSeeded } from "@/lib/require-seeded";
 
 export const dynamic = "force-dynamic";
 
@@ -31,6 +32,7 @@ function KpiCard({ label, value, hint, icon: Icon }: KpiCardProps) {
 }
 
 export default async function DashboardPage() {
+  await requireSeeded();
   const [kpis, encounters, conditions] = await Promise.all([
     getKpis(),
     getEncountersByMonth(),

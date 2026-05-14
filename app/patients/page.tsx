@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/table";
 import { cleanName, formatDate, formatNumber } from "@/lib/format";
 import { getTopConditions, listPatients } from "@/lib/queries";
+import { requireSeeded } from "@/lib/require-seeded";
 
 export const dynamic = "force-dynamic";
 
@@ -40,6 +41,7 @@ export default async function PatientsPage({
 }: {
   searchParams: Promise<SearchParams>;
 }) {
+  await requireSeeded();
   const sp = await searchParams;
   const minAge = parseInt(sp.minAge, 0);
   const maxAge = parseInt(sp.maxAge, 100);
