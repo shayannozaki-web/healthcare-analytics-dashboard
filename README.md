@@ -14,7 +14,7 @@ A web-based internal analytics tool modeled on what a real healthcare operations
 
 **Ask.** The centerpiece. A user types a question like "what are the 10 most common conditions" in plain English. Claude generates a SQL SELECT statement, the app validates it (no INSERT, UPDATE, DELETE, DROP, ALTER, no PRAGMA, no statement chaining), executes it read-only against the database, and renders the result as a chart when the shape fits or a table otherwise. SQL streams in token by token so the user sees the query forming.
 
-## Stack
+## Stack 
 
 - Next.js (App Router) with TypeScript
 - shadcn/ui and Tailwind CSS
