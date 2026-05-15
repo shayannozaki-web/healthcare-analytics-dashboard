@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Activity, LayoutDashboard, MessageSquare, Users } from "lucide-react";
+import { Activity, Database, LayoutDashboard, MessageSquare, Users } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -10,6 +10,7 @@ const navItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
   { href: "/patients", label: "Patients", icon: Users },
   { href: "/ask", label: "Ask", icon: MessageSquare },
+  { href: "/setup", label: "Setup", icon: Database },
 ];
 
 export function AppSidebar() {

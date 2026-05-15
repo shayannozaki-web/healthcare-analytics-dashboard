@@ -16,6 +16,7 @@ import {
   getPatientMedications,
   getReferenceDate,
 } from "@/lib/queries";
+import { requireSeeded } from "@/lib/require-seeded";
 
 export const dynamic = "force-dynamic";
 
@@ -37,6 +38,7 @@ export default async function PatientDetailPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  await requireSeeded();
   const { id } = await params;
   const patient = await getPatient(id);
   if (!patient) notFound();

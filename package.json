@@ -12,7 +12,8 @@
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "db:load": "tsx scripts/load-data.ts",
-    "db:reset": "tsx scripts/load-data.ts --fresh"
+    "db:reset": "tsx scripts/load-data.ts --fresh",
+    "db:build-seed": "tsx scripts/build-seed.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.32.1",
